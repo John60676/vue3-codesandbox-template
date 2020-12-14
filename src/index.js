@@ -1,4 +1,11 @@
-import { createApp } from 'vue';
+import { createApp } from "vue";
 import App from "./App.jsx";
 
-createApp(App).mount("#app");
+let root = document.getElementById("app");
+if (!root) {
+  root = document.createElement("div");
+  root.id = "app";
+  document.body.insertBefore(root, document.body.firstChild);
+}
+
+createApp(App).mount(root);
