@@ -1,59 +1,41 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = env => {
-  const dev = env && env.dev
-  const prod = env && env.prod
-  const codesandbox = env && env.codesandbox
+module.exports = (env) => {
+  const dev = env && env.dev;
+  const prod = env && env.prod;
+  const codesandbox = env && env.codesandbox;
 
   return {
-    entry: './src/index.js',
-    devtool: dev && 'cheap-module-eval-source-map',
+    entry: "./src/index.js",
+    target: 'web',
+    devtool: dev && "cheap-module-eval-source-map",
     devServer: {
-      host: '0.0.0.0',
+      host: "0.0.0.0",
       port: 8080,
       hot: true,
       inline: true,
       disableHostCheck: true,
-      public: '0.0.0.0:0',
+      public: "0.0.0.0:0"
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'VueRequest Demo',
-      }),
+        template: path.resolve(__dirname, "./index.html")
+      })
     ],
     output: {
-      filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      filename: "bundle.js",
+      path: path.resolve(__dirname, "dist")
     },
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx)/,
           exclude: /(node_modules|bower_components)/,
-          use: ['babel-loader'],
-        },
-        {
-          test: /\.css?$/,
-          loader: [
-            {
-              loader: 'style-loader',
-              options: {
-                sourceMap: dev,
-                convertToAbsoluteUrls: dev,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                sourceMap: dev,
-              },
-            },
-          ],
-        },
-      ],
+          use: ["babel-loader"]
+        }
+      ]
     },
-    mode: dev || codesandbox ? 'development' : prod ? 'production' : 'none',
-  }
-}
+    mode: dev || codesandbox ? "development" : prod ? "production" : "none"
+  };
+};
