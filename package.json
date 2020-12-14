@@ -1,10 +1,9 @@
 {
   "name": "vue3-codesandbox-template",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --open --env.codesandbox",
+    "start": "webpack serve",
     "watch": "webpack --watch",
     "build": "webpack --env.prod"
   },
@@ -13,16 +12,17 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "@vue/babel-plugin-jsx": "^1.0.0-rc.5",
+    "@vue/compiler-sfc": "^3.0.4",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^2.0.0",
+    "vue-loader": "^16.1.1",
     "webpack": "^5.10.1",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "vue": "^3.0.4",
-    "vue-loader": "^15.9.5"
+    "vue": "^3.0.4"
   }
 }
